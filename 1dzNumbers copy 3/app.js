@@ -63,18 +63,18 @@
 // } else  console.log(item.price);
 
 
-let product = {
-  name: 'Яблоко',
-  price: '10$'
-};
+// let product = {
+//   name: 'Яблоко',
+//   price: '10$'
+// };
 
-let min = 10
-let max = 20
+// let min = 10
+// let max = 20
 
-let price = parseFloat(product.price)
+// let price = parseFloat(product.price)
 
-if (price >= min || price === max) {
-  console.log(product.name);
-} else 'товар не найден'
+// if (price >= min || price === max) {
+//   console.log(product.name);
+// } else 'товар не найден'
 
-console.log(price);
+// console.log(price);
