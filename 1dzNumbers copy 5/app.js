@@ -70,10 +70,10 @@ let list = {
 
 for (const key in list) {
   if (Object.hasOwnProperty.call(list, key)) {
-    if (typeof(list[key])  === 'string') {
+    if (typeof (list[key]) === 'string') {
       list[key] = list[key].toUpperCase();
     }
-    
+
   }
 }
 
