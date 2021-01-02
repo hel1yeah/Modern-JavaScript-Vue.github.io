@@ -57,3 +57,21 @@
 //   return el.split('').reverse().join('') + ', ';
 // }
 // console.log(firstFunc(['abs', '123'], handler4));
+
+
+function every(arr, fn) {
+  if (!Array.isArray(arr)) return new Error('Первый аргемент не масив');
+  if (!fn || typeof fn !== 'function') return new Error('Второй аргумент не функция');
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!fn(arr[i], i, arr)) {
+      return false;
+    }
+  }
+}
+
+function hendler(el) {
+  return typeof el === 'number';
+
+}
+console.log(every([1, 3, 5], hendler));
