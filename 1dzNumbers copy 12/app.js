@@ -12,11 +12,11 @@
 
 // // Подсказка, функция minus должна возвращать другую функцию.
 
-// // function minus(min) {
-// //   return function (max) {
-// //     return min - max;
-// //   }
-// // }
+// function minus(min) {
+//   return function (max) {
+//     return min - max;
+//   }
+// }
 // // console.log(minus(5)(6));
 
 // Реализовать функцию, которая умножает и умеет запоминать возвращаемый результат между вызовами:
@@ -36,29 +36,82 @@
 // console.log(multiply(1));
 
 
-function FloutStr(string = '') {
-  let str = string;
+// function FloutStr(string = '') {
+//   let str = string;
 
-  function numStr() {
-    return String(str);
+//   function numStr() {
+//     return String(str);
+//   }
+//   function getStr() {
+//     return str;
+//   }
+//   function strLength() {
+//     return str.length;
+//   }
+//   function changelingStr() {
+//     return str.split('').reverse().join('');
+//   }
+//   return {
+//     numStr,
+//     getStr,
+//     strLength,
+//     changelingStr,
+//   };
+// }
+
+// const floutStr = FloutStr('тестовая строка');
+// console.log(floutStr.getStr());
+// console.log(floutStr.changelingStr());
+
+const numModule = (function () {
+  let num = 0;
+
+  function setNumber(val = 0) {
+    num = Number(val);
+    console.log(this);
+    return this;
+
   }
-  function getStr() {
-    return str;
+
+  function plus(val) {
+    num += Number(val);
+    return this;
   }
-  function strLength() {
-    return str.length;
+
+  function minus(val) {
+    num -= Number(val);
+    return this;
   }
-  function changelingStr() {
-    return str.split('').revers().join('');
+
+  function devide(val) {
+    num /= Number(val);
+    return this;
   }
+
+  function pow(ex = 2) {
+    num = Math.pow(num, ex);
+    return this;
+  }
+
+  function getNumber() {
+    return Number(num.toFixed(2)) || 0;
+  }
+
   return {
-    numStr,
-    getStr,
-    strLength,
-    changelingStr,
-  };
-}
+    setNumber,
+    plus,
+    minus,
+    devide,
+    pow,
+    getNumber
+  }
+}());
+
+console.log(
+  numModule
+    .setNumber(3)
+    .pow(2)
+    .getNumber()
+)
 
 
-const floutStr = FloutStr();
-console.log(floutStr('red'));
