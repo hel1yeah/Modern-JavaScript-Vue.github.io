@@ -30,6 +30,7 @@ const tasks = [
       "Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.",
   },
 ];
+
 //* самовызывающейся функция в которую мы передаём задачи tasks
 (function (arrOfTasks) {
   const objOfTasks = arrOfTasks.reduce((acc, task) => {
@@ -37,18 +38,31 @@ const tasks = [
     acc[task._id] = task;
     return acc;
   }, {});
+
+  //* elements UI
+  const listContainer = document.querySelector(
+    ".tasks-list-section .list-group"
+  );
+
+  const form = document.forms["addTask"];
+  const inputTitle = form.elements["title"];
+  const inputBody = form.elements["body"];
+
+  //* events
   renderAllTasks(objOfTasks);
+  form.addEventListener('submit', onFormSubmintHandler)
 
   function renderAllTasks(tasksList) {
     if (!tasksList) {
-      console.error("Передайте список задач");
+      console.error("Передайте список задач!");
       return;
     }
     const fragment = document.createDocumentFragment();
     Object.values(tasksList).forEach((task) => {
       const li = listItemTemplate(task);
-      console.log(li);
+      fragment.appendChild(li);
     });
+    listContainer.appendChild(fragment);
   }
   function listItemTemplate({ _id, title, body } = {}) {
     const li = document.createElement("li");
@@ -59,13 +73,38 @@ const tasks = [
       "flex-wrap",
       "mt-2"
     );
+
     //* создаём спан для текста
     const span = document.createElement("span");
     span.textContent = title;
     span.style.fontWeight = "bold";
+
     //* создаём кнопку удаления
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Удалить задачу";
     deleteBtn.classList.add("btn", "btn-danger", "ml-auto", "delete-btn");
+
+    //* article
+    const article = document.createElement("p");
+    article.textContent = body;
+    article.classList.add("mt-2", "w-100");
+
+    //* добавляем в li таши теги
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
+    li.appendChild(article);
+
+    return li;
+  }
+
+  function onFormSubmintHandler(event) {
+    event.preventDefault();
+    const titleValue = inputTitle.value
+    const bodyValue = inputBody.value
+    
+    if (!titleValue || !bodyValue) {
+      alert('Введите тайт и боди')
+      return
+    }
   }
 })(tasks);
