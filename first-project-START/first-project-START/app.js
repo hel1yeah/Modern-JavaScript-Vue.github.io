@@ -91,13 +91,16 @@ const tasks = [
   const inputTitle = form.elements["title"];
   const inputBody = form.elements["body"];
   const themeSelect = document.getElementById('themeSelect');
-  let lastSelectedTheme = 'default';
+  let lastSelectedTheme = localStorage.getItem('app_theme') || 'default';
 
   //* events
+  setTheme(lastSelectedTheme);
   renderAllTasks(objOfTasks);
   form.addEventListener("submit", onFormSubmintHandler);
   listContainer.addEventListener("click", onDeleteHandler);
   themeSelect.addEventListener('change', onThemeSelectHandler);
+
+
 
   function renderAllTasks(tasksList) {
     if (!tasksList) {
@@ -203,6 +206,8 @@ const tasks = [
     }
     setTheme(selectedTheme);
     lastSelectedTheme = selectedTheme;
+
+    localStorage.setItem('app_theme', selectedTheme)
 
   }
   function setTheme(nameTheme) {
