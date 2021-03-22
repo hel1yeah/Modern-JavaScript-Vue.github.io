@@ -99,10 +99,10 @@ function renderUserInfo(response) {
 }
 
 body.addEventListener('click', (e) => {
-  if (event.target.classList.contains('wrapp__info')) {
-    let test = document.querySelector('wrapp__info')
-    console.log(test);
-    test.classList.toggle('active')
+  if (e.target.classList.contains('wrapp__info')) {
+    console.log(e.target.classList);
+    e.target.classList.toggle('active')
+
   }
 })
 
