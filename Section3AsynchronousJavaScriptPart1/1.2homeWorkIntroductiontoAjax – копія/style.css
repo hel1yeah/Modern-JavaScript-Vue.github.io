@@ -12,3 +12,12 @@
   padding: 10px;
   transition: 0.5s;
 }
+.center{
+  
+}
+
+.wrap{
+  display: block;
+  margin: 10px auto;
+  padding: 0 0 20px 0;
+}
